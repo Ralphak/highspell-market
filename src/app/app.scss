@@ -1,0 +1,25 @@
+mat-toolbar {
+    background-color: var(--mat-sys-surface-bright);
+}
+
+img {
+    height: inherit;
+}
+
+@media (max-width: 799px) {
+  .toolbar-text {
+    display: none;
+  }
+}
+
+main {
+    flex: 1;
+    margin: 1em;
+}
+
+footer {
+  background-color: var(--mat-sys-surface-bright);
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+}
