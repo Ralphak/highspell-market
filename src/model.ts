@@ -2,6 +2,7 @@ export interface Item {
   rowid: number;
   name: string;
   image?: string;
+  imageUrl?: string;
   inspect?: string;
   tradeable: boolean;
   generalbuy?: number;
@@ -14,7 +15,7 @@ export interface Item {
 
 export interface Offer {
   rowid: number;
-  itemid: number;
+  item: Item;
   playername: string;
   price: number;
   amount?: number;

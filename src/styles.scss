@@ -41,8 +41,12 @@ button {
 }
 
 mat-table {
-  display: flex !important;
-  justify-content: center;
+  vertical-align: middle;
+  justify-items: center;
+}
+
+img {
+  vertical-align: middle;
 }
 
 a {
@@ -51,4 +55,8 @@ a {
 
 mat-icon {
   vertical-align: middle;
+}
+
+.expired {
+  color: var(--mat-sys-inverse-on-surface);
 }
