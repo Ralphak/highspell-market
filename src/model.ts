@@ -33,3 +33,10 @@ export class SessionStorage {
     this.myOffers = myOffers;
   }
 }
+
+export interface ItemSearch {
+  title: {
+    InternalID: number,
+    Name: string
+  }
+}

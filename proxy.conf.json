@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://highspellmarket.pages.dev",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

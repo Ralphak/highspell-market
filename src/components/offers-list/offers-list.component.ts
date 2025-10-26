@@ -5,10 +5,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { Offer } from '../../model';
 import { WikiService } from '../../services/wiki-service';
 import { NgClass } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-offers-list',
-  imports: [MatTableModule, MatButtonModule, MatIconModule, NgClass],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, NgClass, RouterLink],
   templateUrl: './offers-list.component.html'
 })
 export class OffersListComponent {
@@ -66,10 +67,11 @@ export class OffersListComponent {
       sessionid: '',
       notes: "raising funds for my new clan Star Wolf"
     });
+    this.dataSource.data.forEach(data => this.getImageUrl(data));
     console.log(this.dataSource.data);
   }
 
-  getImageUrl(offer: Offer): string {
+  private getImageUrl(offer: Offer): string {
     if (offer.item.image && !offer.item.imageUrl) {
       offer.item.imageUrl = this.wikiService.retrieveImageUrl(offer.item.image);
     }
