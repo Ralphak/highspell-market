@@ -1,27 +1,30 @@
+export enum ItemType { "food", "drink", "weapon", "chest", "legs", "helmet", "gloves", "shield", "neck", "back", "projectile", "boots" }
+
 export interface Item {
-  rowid: number;
+  id: number;
   name: string;
-  image?: string;
+  inspect: string;
+  generalbuy: number;
+  generalsell: number;
+  aurumminor: number;
+  aurummajor: number;
+  type?: ItemType;
+
   imageUrl?: string;
-  inspect?: string;
-  tradeable: boolean;
-  generalbuy?: number;
-  generalsell?: number;
-  aurumminor?: number;
-  aurummajor?: number;
-  edible: boolean;
-  equipable: boolean;
 }
 
 export interface Offer {
   rowid: number;
-  item: Item;
+  itemid: number;
   playername: string;
   price: number;
-  amount?: number;
+  amount: number;
   notes?: string;
-  expirydate: string
-  sessionid: string
+  expirydate: string;
+  sessionid: string;
+  itemtype?: ItemType;
+
+  item?: Item;
 }
 
 export class SessionStorage {
@@ -31,12 +34,5 @@ export class SessionStorage {
   constructor(sessionId: string, myOffers: number[]) {
     this.sessionId = sessionId;
     this.myOffers = myOffers;
-  }
-}
-
-export interface ItemSearch {
-  title: {
-    InternalID: number,
-    Name: string
   }
 }

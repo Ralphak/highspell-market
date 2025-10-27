@@ -5,9 +5,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
-import { debounceTime, exhaustMap, filter, Subject } from "rxjs";
-import { ItemSearch } from "../../model";
-import { WikiService } from "../../services/wiki-service";
+import { filter, Subject } from "rxjs";
+import { Item } from "../../model";
+import { ItemService } from "../../services/item-service";
 
 @Component({
   selector: 'app-create-offer',
@@ -16,35 +16,31 @@ import { WikiService } from "../../services/wiki-service";
 })
 export class CreateOfferComponent {
   private searchItemField$ = new Subject<string>();
-  private searchResults: ItemSearch[] = [];
-  filteredSearchResults: ItemSearch[] = [];
+  private searchResults: Item[] = [];
+  filteredSearchResults: Item[] = [];
   errorlog: string = "";
 
-  constructor(
-    wikiService: WikiService
-  ) {
+  constructor(itemService: ItemService) {
     this.searchItemField$.pipe(
-      debounceTime(500),
-      filter(value => value?.length >= 3 && !this.filteredSearchResults.length),
-      exhaustMap(value => wikiService.searchItems(value))
-    ).subscribe(res => this.searchResults = res, (err) => this.errorlog = JSON.stringify(err));
+      filter(value => value?.length >= 3),
+    ).subscribe(value => this.searchResults = itemService.searchItemName(value));
   }
 
   callSearchItem(event: string) {
     if(typeof event != "string")
       return;
-    this.filteredSearchResults = this.searchResults.filter(result => result.title.Name.toLowerCase().includes(event.toLowerCase()));
+    this.filteredSearchResults = this.searchResults.filter(result => result.name.toLowerCase().includes(event.toLowerCase()));
     this.searchItemField$.next(event);
   }
 
   fetchItem(event: MatAutocompleteSelectedEvent) {
-    const item = event.option.value as ItemSearch;
+    const item = event.option.value as Item;
     this.searchItemField$.next("");
-    console.log(item);
+    this.errorlog = JSON.stringify(item);
   }
 
-  showOptionName(option: ItemSearch) {
-    return option ? option.title.Name : "";
+  showOptionName(option: Item) {
+    return option ? option.name : "";
   }
 
   resetField(field: NgModel) {

@@ -5,7 +5,7 @@
     [matAutocomplete]="auto">
   <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="fetchItem($event)" [displayWith]="showOptionName">
     @for (option of filteredSearchResults; track option) {
-    <mat-option [value]="option">{{option.title.Name}}</mat-option>
+    <mat-option [value]="option">{{option.name}}</mat-option>
     }
   </mat-autocomplete>
   @if (searchModel.value) {
