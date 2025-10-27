@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { Offer, SessionStorage } from '../model';
 import * as uuid from 'uuid';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatIconModule, RouterLinkWithHref],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

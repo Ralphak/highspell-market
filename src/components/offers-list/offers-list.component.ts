@@ -6,17 +6,24 @@ import { Offer } from '../../model';
 import { NgClass } from '@angular/common';
 import { RouterLink } from "@angular/router";
 import { OfferService } from '../../services/offer-service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-offers-list',
-  imports: [MatTableModule, MatButtonModule, MatIconModule, NgClass, RouterLink],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, NgClass, RouterLink, MatProgressSpinnerModule],
   templateUrl: './offers-list.component.html'
 })
 export class OffersListComponent {
-  readonly displayedColumns = ["itemname", "price", "playername", "notes", "age"];
+  readonly displayedColumns = ["image", "itemname", "price", "playername", "notes", "age"];
   readonly dataSource = new MatTableDataSource<Offer>();
+  loading: boolean = true;
 
   constructor(offerService: OfferService) {
     offerService.listOffers().subscribe(list => this.dataSource.data = list);
+    setTimeout(() => this.loading = false, 3000);
+  }
+
+  stopLoading(offer: Offer) {
+    offer.item!.imageLoading = false;
   }
 }

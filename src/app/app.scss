@@ -6,6 +6,10 @@ img {
     height: inherit;
 }
 
+img.logo-image {
+  cursor: pointer;
+}
+
 @media (max-width: 799px) {
   .toolbar-text {
     display: none;

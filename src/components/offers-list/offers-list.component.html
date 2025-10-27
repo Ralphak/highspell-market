@@ -5,15 +5,23 @@
   </button>
 </div>
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <img [src]="element.item?.imageUrl" (load)="stopLoading(element)" (error)="stopLoading(element)"/>
+      @if(element.item?.imageLoading){
+        <mat-spinner diameter="36"></mat-spinner>
+      }
+    </td>
+  </ng-container>
   <ng-container matColumnDef="itemname">
     <th mat-header-cell *matHeaderCellDef>Item Name</th>
-    <td mat-cell *matCellDef="let element" class="image-cell"><img [src]="element.item?.imageUrl" />
-      {{element.item?.name}} </td>
+    <td mat-cell *matCellDef="let element">{{element.item?.name}}</td>
   </ng-container>
   <ng-container matColumnDef="price">
     <th mat-header-cell *matHeaderCellDef>Price x Amount</th>
     <td mat-cell *matCellDef="let element">
-      <img src="16px-Coins_icon.png" alt="Coins" /> {{element.price}} 
+      <img src="16px-Coins_icon.png" /> {{element.price}}
       <br>
       x {{element.amount}}
     </td>
@@ -31,6 +39,7 @@
     <td mat-cell *matCellDef="let element">{{element.expirydate}}</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'expired': row.expirydate == 'Expired'}"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'expired': row.expirydate == 'Expired'}">
+  </tr>
 </mat-table>
 @if (!dataSource.data.length) { <p class="center">No offers were found</p> }

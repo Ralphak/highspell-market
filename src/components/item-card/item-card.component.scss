@@ -1,0 +1,27 @@
+mat-card {
+  width: fit-content;
+}
+
+.header-titles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+mat-card-content {
+  display: flex;
+  gap: 1em;
+}
+
+img.item-image {
+  height: fit-content;
+  margin: auto 1em;
+}
+
+h2 {
+  margin: auto 0;
+}
+
+mat-spinner {
+  margin-right: 1em;
+}

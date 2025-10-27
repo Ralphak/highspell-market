@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-header>
+    <img [src]="item.imageUrl" class="item-image" (load)="stopLoading(item)" (error)="stopLoading(item)"
+      [hidden]="item.imageLoading" />
+    @if(item.imageLoading){
+    <mat-spinner diameter="36"></mat-spinner>
+    }
+    <div class="header-titles">
+      <h2>{{item.name | titlecase}}</h2>
+      <small>{{item.inspect}}</small>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <p matTooltip="Buy from store"><img src="16px-Buy_icon.png" /> {{item.generalbuy}}</p>
+      <p matTooltip="Sell to store"><img src="16px-Sell_icon.png" /> {{item.generalsell}}</p>
+    </div>
+    <div>
+      <p matTooltip="Aurum Minor"><img src="Aurum_Minor.png" /> {{item.aurumminor}}</p>
+      <p matTooltip="Aurum Majora"><img src="Aurum_Majora.png" /> {{item.aurummajor}}</p>
+    </div>
+    <div style="margin-left: 1em;">
+      <p><b>Average price (7 days): </b><img src="16px-Coins_icon.png" /> {{avgWeek ?? "-"}} </p>
+      <p><b>Average price (30 days): </b><img src="16px-Coins_icon.png" /> {{avgMonth ?? "-"}} </p>
+    </div>
+  </mat-card-content>
+</mat-card>

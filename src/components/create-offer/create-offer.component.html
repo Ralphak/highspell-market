@@ -16,5 +16,10 @@
   @if (searchModel.errors?.['minlength']) {
   <mat-error>Please type at least 3 characters</mat-error>
   }
+  @if (searchModel.valid && !filteredSearchResults.length) {
+  <small>{{loadingSearchMessage}}</small>
+  }
 </mat-form-field>
-{{errorlog}}
+@if(selectedItem) {
+  <app-item-card [item]="selectedItem" />
+}

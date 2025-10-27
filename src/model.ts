@@ -11,6 +11,7 @@ export interface Item {
   type?: ItemType;
 
   imageUrl?: string;
+  imageLoading?: boolean;
 }
 
 export interface Offer {
