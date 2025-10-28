@@ -55,4 +55,8 @@ export class CreateOfferComponent {
     this.searchResults = [];
     this.filteredSearchResults = [];
   }
+
+  onSubmit(value: any) {
+    console.log(value);
+  }
 }

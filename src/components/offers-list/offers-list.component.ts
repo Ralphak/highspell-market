@@ -14,7 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   templateUrl: './offers-list.component.html'
 })
 export class OffersListComponent {
-  readonly displayedColumns = ["image", "itemname", "price", "playername", "notes", "age"];
+  readonly displayedColumns = ["itemname", "price", "playername", "notes", "age"];
   readonly dataSource = new MatTableDataSource<Offer>();
   loading: boolean = true;
 

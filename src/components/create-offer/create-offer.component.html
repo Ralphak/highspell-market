@@ -1,9 +1,10 @@
 <h1>Create New Offer</h1>
 <mat-form-field>
   <mat-label>Search item</mat-label>
-  <input matInput type="text" minlength="3" #searchModel="ngModel" ngModel="" (ngModelChange)="callSearchItem($event)"
+  <input matInput type="text" minlength="3" ngModel #searchModel="ngModel" (ngModelChange)="callSearchItem($event)"
     [matAutocomplete]="auto">
-  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="fetchItem($event)" [displayWith]="showOptionName">
+  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="fetchItem($event)"
+    [displayWith]="showOptionName">
     @for (option of filteredSearchResults; track option) {
     <mat-option [value]="option">{{option.name}}</mat-option>
     }
@@ -20,6 +21,37 @@
   <small>{{loadingSearchMessage}}</small>
   }
 </mat-form-field>
-@if(selectedItem) {
+<div class="gap-content">
+  @if(selectedItem) {
   <app-item-card [item]="selectedItem" />
-}
+  <form #form="ngForm" (submit)="onSubmit(form.value)">
+    <div class="gap-content">
+      <mat-form-field style="width: 160px;">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" min="1" ngModel #inputPrice="ngModel" name="price" required>
+        @if (inputPrice.errors?.['min']) {
+        <mat-error>Minimum value is 1</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field style="width: 160px;">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" min="1" ngModel #inputAmount="ngModel" name="amount" required>
+        @if (inputAmount.errors?.['min']) {
+        <mat-error>Minimum value is 1</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field style="width: 280px;">
+        <mat-label>Add notes (optional)</mat-label>
+        <input matInput type="text" maxlength="32" ngModel #inputNotes="ngModel" name="notes">
+        <mat-hint align="end">{{inputNotes.value?.length ?? 0}} / 32</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="gap-content">
+      <span>Your HighSpell character name*:</span>
+      <input matInput type="text" maxlength="16" ngModel #inputPlayername="ngModel" name="playername" required>
+    </div>
+    <br>
+    <button type="submit" matButton="filled" [disabled]="form.invalid">Submit</button>
+  </form>
+  }
+</div>

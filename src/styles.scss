@@ -1,11 +1,16 @@
 @use '@angular/material' as mat;
 
-$typography: "Roboto, Helvetica Neue, sans-serif";
+$light-theme: mat.define-theme((
+  color: (
+    primary: mat.$green-palette,
+    theme-type: light
+  )
+));
 
 html {
   @include mat.theme((color: (primary: mat.$green-palette,
         theme-type: dark),
-      typography: $typography,
+      typography: "Roboto, Helvetica Neue, sans-serif",
       density: 0));
 }
 
@@ -23,16 +28,24 @@ app-root {
 }
 
 button {
-  @include mat.theme((color: (primary: mat.$green-palette,
-        theme-type: light),
-      typography: $typography,
-      density: 0));
+  @include mat.all-component-themes($light-theme);
+}
+
+button[disabled] {
+  background-color: var(--mat-sys-inverse-on-surface) !important;
+  color: var(--mat-sys-outline) !important;
 }
 
 .space-content {
   display: flex;
   justify-content: space-between;
   gap: 1em;
+}
+
+.gap-content {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
 }
 
 .center {
@@ -63,4 +76,8 @@ mat-icon {
 
 .field-button {
   color: inherit !important;
+}
+
+form {
+  margin-top: 1em;
 }
