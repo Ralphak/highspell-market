@@ -19,12 +19,12 @@ export class App {
     const sessionId = localStorage.getItem("sessionId");
     if (!sessionId || !uuid.validate(sessionId)) {
       const newStorage = new SessionStorage(uuid.v7(), []);
-      Object.entries(newStorage).forEach(kv => localStorage.setItem(kv[0], JSON.stringify(kv[1])));
+      Object.entries(newStorage).forEach(kv => localStorage.setItem(kv[0], kv[1]));
       return newStorage;
     }
     return {
       sessionId,
-      myOffers: JSON.parse(localStorage.getItem("myOffers") ?? "[]")
+      myOffers: (localStorage.getItem("myOffers") ?? "").split(',').filter(Boolean).map(Number)
     };
   }
 
