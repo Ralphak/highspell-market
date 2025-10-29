@@ -3,7 +3,7 @@ import { Item } from "model";
 import { HttpClient } from "@angular/common/http";
 import { WikiService } from "services/wiki-service";
 import itemDB from "database/items.json";
-import { delay, Observable, of } from "rxjs";
+import { Observable, of } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class ItemService {
@@ -17,7 +17,7 @@ export class ItemService {
     return of(
       this.items.filter(i => i.name.toLowerCase().includes(keyword.toLowerCase()))
         .sort((a, b) => a.name.localeCompare(b.name))
-    ).pipe(delay(1000));
+    );
   }
 
   getItem(id: number): Item | undefined {

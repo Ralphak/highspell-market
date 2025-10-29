@@ -21,8 +21,9 @@
   <small>{{loadingSearchMessage}}</small>
   }
 </mat-form-field>
+
+@if(selectedItem) {
 <div class="gap-content">
-  @if(selectedItem) {
   <app-item-card [item]="selectedItem" />
   <form #form="ngForm" (submit)="onSubmit(form.value)">
     <div class="gap-content">
@@ -53,5 +54,5 @@
     <br>
     <button type="submit" matButton="filled" [disabled]="form.invalid">Submit</button>
   </form>
-  }
 </div>
+}

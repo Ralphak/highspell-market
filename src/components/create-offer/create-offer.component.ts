@@ -67,7 +67,7 @@ export class CreateOfferComponent extends App {
       price: value.price,
       amount: value.amount,
       notes: value.notes,
-      expirydate: dayjs().add(3, "day").toString(),
+      expirydate: dayjs().add(3, "day").format(),
       sessionid: this.sessionId,
     }
     console.log(newOffer);
