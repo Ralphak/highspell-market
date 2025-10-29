@@ -6,16 +6,18 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { exhaustMap, filter, Subject } from "rxjs";
-import { Item } from "../../model";
-import { ItemService } from "../../services/item-service";
-import { ItemCardComponent } from "../item-card/item-card.component";
+import { Item, NewOffer } from "model";
+import { ItemService } from "services/item-service";
+import { ItemCardComponent } from "components/item-card/item-card.component";
+import { App } from "app/app";
+import dayjs from "dayjs";
 
 @Component({
   selector: 'app-create-offer',
   imports: [MatButtonModule, MatIconModule, FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, ItemCardComponent],
   templateUrl: './create-offer.component.html'
 })
-export class CreateOfferComponent {
+export class CreateOfferComponent extends App {
   private searchItemField$ = new Subject<string>();
   private searchResults: Item[] = [];
   filteredSearchResults: Item[] = [];
@@ -23,6 +25,7 @@ export class CreateOfferComponent {
   loadingSearchMessage?: string;
 
   constructor(itemService: ItemService) {
+    super();
     this.searchItemField$.pipe(
       filter(value => value?.length >= 3),
       exhaustMap(value => itemService.searchItemName(value))
@@ -33,7 +36,7 @@ export class CreateOfferComponent {
   }
 
   callSearchItem(event: string) {
-    if(typeof event != "string")
+    if (typeof event != "string")
       return;
     this.loadingSearchMessage = "Loading...";
     this.filteredSearchResults = this.searchResults.filter(result => result.name.toLowerCase().includes(event.toLowerCase()));
@@ -57,6 +60,16 @@ export class CreateOfferComponent {
   }
 
   onSubmit(value: any) {
-    console.log(value);
+    const newOffer: NewOffer = {
+      itemid: this.selectedItem!.id,
+      itemtype: this.selectedItem!.type,
+      playername: value.playername,
+      price: value.price,
+      amount: value.amount,
+      notes: value.notes,
+      expirydate: dayjs().add(3, "day").toString(),
+      sessionid: this.sessionId,
+    }
+    console.log(newOffer);
   }
 }

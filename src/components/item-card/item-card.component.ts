@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { MatCardModule } from "@angular/material/card";
-import { Item } from "../../model";
+import { Item } from "model";
 import { TitleCasePipe } from "@angular/common";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { WikiService } from "../../services/wiki-service";
+import { WikiService } from "services/wiki-service";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @Component({

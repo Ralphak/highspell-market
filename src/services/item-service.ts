@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Item } from "../model";
+import { Item } from "model";
 import { HttpClient } from "@angular/common/http";
-import { WikiService } from "./wiki-service";
-import itemDB from "../database/items.json";
+import { WikiService } from "services/wiki-service";
+import itemDB from "database/items.json";
 import { delay, Observable, of } from "rxjs";
 
 @Injectable({ providedIn: 'root' })

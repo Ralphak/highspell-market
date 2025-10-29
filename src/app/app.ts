@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
-import { Offer, SessionStorage } from '../model';
+import { Offer, SessionStorage } from 'model';
 import * as uuid from 'uuid';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -28,11 +28,15 @@ export class App {
     };
   }
 
+  protected get sessionId(): string {
+    return this.storage.sessionId;
+  }
+
   get myOffers(): number[] {
     return this.storage.myOffers;
   }
 
-  addOfferToStorage(offer: Offer): void {
+  protected addOfferToStorage(offer: Offer): void {
     if (offer.sessionid === this.storage.sessionId) {
       this.myOffers.push(offer.rowid);
       localStorage.setItem("myOffers", JSON.stringify(this.myOffers));

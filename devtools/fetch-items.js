@@ -4,7 +4,8 @@
 const fs = require("fs/promises");
 const path = require('path');
 
-const url = "https://highspell.com:8887/static/itemdefs.31.carbon";
+const gameVersion = 32;
+const url = `https://highspell.com:8887/static/itemdefs.${gameVersion}.carbon`;
 const dbPath = "../src/database/";
 
 async function main() {
