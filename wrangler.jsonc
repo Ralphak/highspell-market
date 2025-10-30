@@ -2,6 +2,7 @@
   "name": "highspellmarket",
   "compatibility_date": "2025-10-29",
   "pages_build_output_dir": "./dist/highspell-market/browser",
+  "pages_function_dir": "./functions",
   "d1_databases": [
     {
       "binding": "database",

@@ -15,7 +15,7 @@
       @if(element.item?.imageLoading){
       <mat-spinner diameter="36"></mat-spinner>
       }
-      {{element.item?.name}}
+      {{element.item?.name | titlecase}}
     </td>
   </ng-container>
   <ng-container matColumnDef="price">

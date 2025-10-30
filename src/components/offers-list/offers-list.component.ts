@@ -3,14 +3,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from "@angular/material/icon";
 import { Offer } from 'model';
-import { NgClass } from '@angular/common';
+import { NgClass, TitleCasePipe } from '@angular/common';
 import { RouterLink } from "@angular/router";
 import { OfferService } from 'services/offer-service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-offers-list',
-  imports: [MatTableModule, MatButtonModule, MatIconModule, NgClass, RouterLink, MatProgressSpinnerModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, NgClass, RouterLink, MatProgressSpinnerModule, TitleCasePipe],
   templateUrl: './offers-list.component.html'
 })
 export class OffersListComponent {
