@@ -1,0 +1,12 @@
+{
+  "name": "highspellmarket",
+  "compatibility_date": "2025-10-29",
+  "pages_build_output_dir": "./dist/highspell-market/browser",
+  "d1_databases": [
+    {
+      "binding": "database",
+      "database_name": "highspellmarket",
+      "database_id": "93424eea-8ec1-45ac-a1b6-988d0a52b850"
+    }
+  ]
+}

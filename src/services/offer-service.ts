@@ -8,7 +8,7 @@ import { Observable, of } from "rxjs";
 export class OfferService {
   private readonly offers: Offer[] = [];
 
-  constructor(http: HttpClient, private itemService: ItemService) {
+  constructor(private http: HttpClient, private itemService: ItemService) {
     this.offers.push({
       rowid: 1,
       itemid: 545,
@@ -54,5 +54,9 @@ export class OfferService {
 
   getOffer(id: number): Observable<Offer | undefined> {
     return of(this.offers.find(i => i.rowid == id));
+  }
+
+  test(): Observable<any> {
+    return this.http.get("/api/test");
   }
 }

@@ -18,12 +18,16 @@ export class OffersListComponent {
   readonly dataSource = new MatTableDataSource<Offer>();
   loading: boolean = true;
 
-  constructor(offerService: OfferService) {
+  constructor(private offerService: OfferService) {
     offerService.listOffers().subscribe(list => this.dataSource.data = list);
     setTimeout(() => this.loading = false, 3000);
   }
 
   stopLoading(offer: Offer) {
     offer.item!.imageLoading = false;
+  }
+
+  test() {
+    this.offerService.test().subscribe(res => console.log(res));
   }
 }
